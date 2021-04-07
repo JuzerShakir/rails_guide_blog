@@ -25,7 +25,7 @@ Following gems were installed in these versions:
 |    SQLite     |       'sqlite3'     |  **~>1.4**  | *Use sqlite3 as the database for Active Record*  |
 
 
-You can find all gems in this [Gemfile](https://github.com:JuzerShakir/rails_guide_blog/blob/master/Gemfile).
+You can find all gems in this [Gemfile](https://github.com/JuzerShakir/rails_guide_blog/blob/master/Gemfile).
 
 
 ----
