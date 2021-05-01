@@ -1,13 +1,12 @@
 class ArticlesController < ApplicationController
-
+  # will ask authentication to create, update and destroy article
   http_basic_authenticate_with name: "juzer", password: "123", except: [:index, :show]
 
+  before_action :find_user, only: [:show, :edit, :update, :destroy]
+
+  # home
   def index
     @articles = Article.all
-  end
-
-  def show
-    @article = Article.find(params[:id])
   end
 
   def new
@@ -25,13 +24,7 @@ class ArticlesController < ApplicationController
 
   end
 
-  def edit
-    @article = Article.find(params[:id])
-  end
-
   def update
-    @article = Article.find(params[:id])
-
     if @article.update(article_params)
       redirect_to @article
     else
@@ -41,13 +34,17 @@ class ArticlesController < ApplicationController
   end
 
   def destroy
-    @article = Article.find(params[:id])
     @article.destroy
 
     redirect_to root_path
   end
 
   private
+    # a single function to avoid duplicates
+    def find_user
+      @article = Article.find(params[:id])
+    end
+    # whitelist attributes to be saved in the articles model
     def article_params
       params.require(:article).permit(:title, :body, :status)
     end
